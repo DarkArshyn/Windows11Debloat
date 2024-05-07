@@ -232,7 +232,7 @@ Write-Host "IntegratedServicesRegionPolicySet.json file has been edited successf
 Write-Host "Tweaking registry, please wait..."
 
 #Loading registry keys (System components)
-reg load "HKLM\zNTUSER" $Menv:HOMEDRIVE\Users\Default\ntuser.dat        #Apply all HKCU keys to all new created users
+reg load "HKLM\zNTUSER" $env:HOMEDRIVE\Users\Default\ntuser.dat        #Apply all HKCU keys to all new created users
 
 #########################
 #   Registry : Privacy  #
