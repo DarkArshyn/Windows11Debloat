@@ -7,6 +7,8 @@ This script uses PowerShell and DISM.
 
 Since the script is written in PowerShell, you need to modify the default script execution policy. To do this, run a PowerShell terminal as an administrator, then enter the command `Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Confirm:$false`. This policy will allow only the local user to execute scripts on the machine. Once done, you can launch the script without any issues.
 
+<ins>Edit (08/05/24) :</ins> I've created a simple graphical interface for this script that allows choosing which element to delete (view in release section). The program has been compiled with **[PS2EXE](https://github.com/MScholtes/PS2EXE)**
+
 > [!TIP]
 > You're free to use or modify the script as you want (AGPL Licence). Feedback are also appreciated, it can help me to improve the script and fix bugs.
 
