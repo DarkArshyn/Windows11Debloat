@@ -3,13 +3,19 @@ Add-Type -AssemblyName System.Drawing
 
 $objForm = New-Object System.Windows.Forms.Form 
 $objForm.Text = "Win 11 Debloat GUI"
-$objForm.ClientSize = '280,350'
+$objForm.ClientSize = '795,350'
 $objForm.StartPosition = "CenterScreen"
 $objForm.BackColor = "White"
 $objForm.KeyPreview = $True
 $objForm.Topmost = $True
 $objform.MaximizeBox = $False
 $objForm.FormBorderStyle = [System.Windows.Forms.FormBorderStyle]::FixedDialog
+
+$Version = New-Object System.Windows.Forms.Label
+$Version.Text = "Version 1.1"
+$Version.AutoSize = $true
+$Version.Location = New-Object System.Drawing.Size(710,304)
+$objForm.Controls.Add($Version)
 
 #############################
 #                           #
@@ -200,28 +206,61 @@ $ContextMenuGroupBox.add_MouseEnter({
 
 })
 
-$objForm.controls.add($ContextMenuGroupBox)
+$objForm.Controls.Add($ContextMenuGroupBox)
 
-###############################
-#                             #
-#     Output Menu Section     #
-#                             #
-###############################
+###################################
+#                                 #
+#     Windows Version Section     #
+#                                 #
+###################################
 
-#Output Menu
-$OutputMenuGroupBox = New-Object System.Windows.Forms.GroupBox
-$OutputMenuGroupBox.Location = New-Object System.Drawing.Size(10,243)
-$OutputMenuGroupBox.Size = New-Object System.Drawing.Size(260,50)
-$OutputMenuGroupBox.Text = "Output Section"
+#Windows Version
+$WindowsVersionGroupBox = New-Object System.Windows.Forms.GroupBox
+$WindowsVersionGroupBox.Location = New-Object System.Drawing.Size(10,243)
+$WindowsVersionGroupBox.Size = New-Object System.Drawing.Size(260,50)
+$WindowsVersionGroupBox.Text = "What's your Windows version"
 
-#Output Text
-$OutputText = New-Object System.Windows.Forms.Label
-$OutputText.Location = New-Object System.Drawing.Size(10,20)
-$OutputText.AutoSize = $true
-$OutputText.Text = ""
-$OutputMenuGroupBox.Controls.Add($OutputText)
+#Windows Version Text
+$WindowsText = New-Object System.Windows.Forms.Label
+$WindowsText.Location = New-Object System.Drawing.Size(10,20)
+$WindowsText.AutoSize = $true
+$WindowsText.Text = (Get-WmiObject -class Win32_OperatingSystem).Caption
+$WindowsVersionGroupBox.Controls.Add($WindowsText)
 
-$objForm.controls.add($OutputMenuGroupBox)
+$objForm.Controls.Add($WindowsVersionGroupBox)
+
+##################################
+#                                #
+#     Output Console Section     #
+#                                #
+##################################
+
+#Output Console
+$OutputConsoleGroupBox = New-Object System.Windows.Forms.GroupBox
+$OutputConsoleGroupBox.Location = New-Object System.Drawing.Size(280,18)
+$OutputConsoleGroupBox.Size = New-Object System.Drawing.Size(505,275)
+$OutputConsoleGroupBox.Text = "Output Console"
+
+$ConsoleOutput = New-Object System.Windows.Forms.RichTextBox
+$ConsoleOutput.BackColor = [System.Drawing.Color]::DarkBlue
+$ConsoleOutput.ForeColor = [System.Drawing.Color]::White
+$ConsoleOutput.Font = New-Object System.Drawing.Font("Consolas", 10)
+$ConsoleOutput.Multiline = $true
+$ConsoleOutput.ScrollBars = "Vertical"
+$ConsoleOutput.Location = New-Object System.Drawing.Size(10,20)
+$ConsoleOutput.Size = New-Object System.Drawing.Size(485,245)
+$ConsoleOutput.Anchor = "Left","Top","Right","Bottom"
+$ConsoleOutput.ReadOnly = $true
+$ConsoleOutput.BorderStyle = "Fixed3d"
+$OutputConsoleGroupBox.Controls.Add($ConsoleOutput)
+
+$objForm.Controls.Add($OutputConsoleGroupBox)
+
+############################
+#                          #
+#     Dark Mode Button     #
+#                          #
+############################
 
 #Dark Mode
 $DarkModeButton = New-Object System.Windows.Forms.CheckBox
@@ -240,7 +279,8 @@ $DarkModeButtonButton_OnClick = {
                 $AdditionnalBloatwareGroupBox.ForeColor = "#ffffff"
                 $RegistryGroupBox.ForeColor = "#ffffff"
                 $ContextMenuGroupBox.ForeColor = "#ffffff"
-                $OutputMenuGroupBox.ForeColor = "#ffffff"
+                $WindowsVersionGroupBox.ForeColor = "#ffffff"
+                $OutputConsoleGroupBox.ForeColor = "#ffffff"
             }
         elseif ($DarkModeButton.Checked -eq $false)
             {
@@ -250,7 +290,8 @@ $DarkModeButtonButton_OnClick = {
                 $AdditionnalBloatwareGroupBox.ForeColor = "#000000"
                 $RegistryGroupBox.ForeColor = "#000000"
                 $ContextMenuGroupBox.ForeColor = "#000000"
-                $OutputMenuGroupBox.ForeColor = "#000000"
+                $WindowsVersionGroupBox.ForeColor = "#000000"
+                $OutputConsoleGroupBox.ForeColor = "#000000"
             }
     }
 $DarkModeButton.Add_Click($DarkModeButtonButton_OnClick)
@@ -268,6 +309,12 @@ $DarkModeButton.add_MouseEnter({
 
 })
 
+######################
+#                    #
+#     Run Button     #
+#                    #
+######################
+
 #Run Button
 $RunButton = New-Object System.Windows.Forms.Button
 $RunButton.Location = New-Object System.Drawing.Size(100,300)
@@ -279,7 +326,17 @@ $objForm.Controls.Add($RunButton)
 ##############################################
 
 $RunButton.Add_Click({
-            
+
+            ########################
+            #                      #
+            #     Color Output     #
+            #                      #
+            ########################
+
+            $yellowBrush = [System.Drawing.Color]::Yellow
+            $greenBrush = [System.Drawing.Color]::Green
+            $redBrush = [System.Drawing.Color]::Red
+
             #############################
             #                           #
             #     Bloatware Section     #
@@ -288,39 +345,54 @@ $RunButton.Add_Click({
 
             If($BloatwareYesButton.Checked -eq $true){
 
-            $OutputText.Text = "Removing bloatware, please wait..."
-                
+                $ConsoleOutput.SelectionColor = $yellowBrush
+                $ConsoleOutput.AppendText("Removing bloatware, please wait...`r`n")
+                $ConsoleOutput.SelectionColor = $ConsoleOutput.ForeColor
+    
                 Try{
 
-                    $ExcludeApp = "1527c705-839a-4832-9118-54d4Bd6a0c89","c5e2524a-ea46-4f67-841f-6a9465d9d515","E2A4F912-2574-4A75-9BB0-0D023378592B","F46D4000-FD22-4DB4-AC8E-4E1DDDE828FE","Microsoft.AAD.BrokerPlugin","Microsoft.AccountsControl","Microsoft.MicrosoftEdge.Stable","Microsoft.AsyncTextService","Microsoft.AVCEncoderVideoExtension","Microsoft.BioEnrollment","Microsoft.CredDialogHost","Microsoft.MicrosoftEdgeDevToolsClient","Microsoft.LanguageExperiencePack","Microsoft.UI.Xaml.CBS","Microsoft.Win32WebViewHost","Microsoft.Windows.Apprep.ChxApp","Microsoft.Windows.AssignedAccessLockApp","Microsoft.Windows.CallingShellApp","Microsoft.Windows.CapturePicker","Microsoft.Windows.CloudExperienceHost","Microsoft.Windows.ContentDeliveryManager","Microsoft.DolbyAudioExtensions","Microsoft.Windows.NarratorQuickStart","Microsoft.Windows.OOBENetworkCaptivePortal","Microsoft.Windows.OOBENetworkConnectionFlow","Microsoft.Windows.PeopleExperienceHost","Microsoft.Windows.ParentalControls","Microsoft.Windows.PinningConfirmationDialog","Microsoft.Windows.PrintQueueActionCenter","Microsoft.Windows.SecureAssessmentBrowser","Microsoft.Windows.StartMenuExperienceHost","Microsoft.Windows.XGpuEjectDialog","Microsoft.WindowsAppRuntime.CBS","Microsoft.XboxGameCallableUI","MicrosoftWindows.Client.Core","MicrosoftWindows.Client.FileExp","MicrosoftWindows.UndockedDevKit","NcsiUwpApp","Windows.CBSPreview","windows.immersivecontrolpanel","Windows.PrintDialog","Microsoft.UI.Xaml.2.4","Microsoft.VCLibs.140.00","Microsoft.NET.Native.Runtime.2.2","Microsoft.NET.Native.Framework.2.2","Microsoft.DesktopAppInstaller","Microsoft.HEIFImageExtension","Microsoft.HEVCVideoExtension","Microsoft.MPEG2VideoExtension","Microsoft.RawImageExtension","Microsoft.ScreenSketch","Microsoft.StorePurchaseApp","Microsoft.VP9VideoExtensions","Microsoft.WebMediaExtensions","Microsoft.WebpImageExtension","Microsoft.WindowsCalculator","Microsoft.WindowsNotepad","Microsoft.WindowsTerminal","Microsoft.SecHealthUI","Microsoft.VCLibs.140.00.UWPDesktop","Microsoft.WindowsAppRuntime.1.5","Microsoft.UI.Xaml.2.8","Microsoft.VCLibs.140.00","Microsoft.NET.Native.Runtime.2.2","Microsoft.NET.Native.Framework.2.2","Microsoft.Paint","Microsoft.WindowsStore","Microsoft.UI.Xaml.2.7","MicrosoftWindows.Client.LKG","Microsoft.WindowsAppRuntime.CBS","MicrosoftWindows.Client.Core","MicrosoftWindows.Client.FileExp","Microsoft.ECApp","Microsoft.LockApp","Microsoft.Windows.ShellExperienceHost","MicrosoftWindows.Client.CBS"
+                    $ExcludeApp = "1527c705-839a-4832-9118-54d4Bd6a0c89","c5e2524a-ea46-4f67-841f-6a9465d9d515","E2A4F912-2574-4A75-9BB0-0D023378592B","F46D4000-FD22-4DB4-AC8E-4E1DDDE828FE","Microsoft.AAD.BrokerPlugin","Microsoft.AccountsControl","Microsoft.MicrosoftEdge.Stable","Microsoft.AsyncTextService","Microsoft.AVCEncoderVideoExtension","Microsoft.BioEnrollment","Microsoft.CredDialogHost","Microsoft.MicrosoftEdgeDevToolsClient","Microsoft.LanguageExperiencePack*","Microsoft.UI.Xaml.CBS","Microsoft.Win32WebViewHost","Microsoft.Windows.Apprep.ChxApp","Microsoft.Windows.AssignedAccessLockApp","Microsoft.Windows.CallingShellApp","Microsoft.Windows.CapturePicker","Microsoft.Windows.CloudExperienceHost","Microsoft.Windows.ContentDeliveryManager","Microsoft.DolbyAudioExtensions","Microsoft.Windows.NarratorQuickStart","Microsoft.Windows.OOBENetworkCaptivePortal","Microsoft.Windows.OOBENetworkConnectionFlow","Microsoft.Windows.PeopleExperienceHost","Microsoft.Windows.ParentalControls","Microsoft.Windows.PinningConfirmationDialog","Microsoft.Windows.PrintQueueActionCenter","Microsoft.Windows.SecureAssessmentBrowser","Microsoft.Windows.StartMenuExperienceHost","Microsoft.Windows.XGpuEjectDialog","Microsoft.WindowsAppRuntime.CBS","Microsoft.WindowsAppRuntime*","Microsoft.XboxGameCallableUI","MicrosoftWindows.Client.Core","MicrosoftWindows.Client.FileExp","MicrosoftWindows.UndockedDevKit","NcsiUwpApp","Windows.CBSPreview","windows.immersivecontrolpanel","Windows.PrintDialog","Microsoft.UI.Xaml.2.4","Microsoft.VCLibs.140.00","Microsoft.NET.Native.Runtime.2.2","Microsoft.NET.Native.Framework.2.2","Microsoft.DesktopAppInstaller","Microsoft.HEIFImageExtension","Microsoft.HEVCVideoExtension","Microsoft.MPEG2VideoExtension","Microsoft.RawImageExtension","Microsoft.ScreenSketch","Microsoft.StorePurchaseApp","Microsoft.VP9VideoExtensions","Microsoft.WebMediaExtensions","Microsoft.WebpImageExtension","Microsoft.WindowsCalculator","Microsoft.WindowsNotepad","Microsoft.WindowsTerminal","Microsoft.SecHealthUI","Microsoft.VCLibs.140.00.UWPDesktop","Microsoft.WindowsAppRuntime.1.5","Microsoft.UI.Xaml.2.8","Microsoft.VCLibs.140.00","Microsoft.NET.Native.Runtime.2.2","Microsoft.NET.Native.Framework.2.2","Microsoft.Paint","Microsoft.WindowsStore","Microsoft.UI.Xaml.2.7","MicrosoftWindows.Client.LKG","Microsoft.WindowsAppRuntime.CBS","MicrosoftWindows.Client.Core","Microsoft.ECApp","Microsoft.LockApp","Microsoft.Windows.ShellExperienceHost","MicrosoftWindows.Client.CBS"
 
                     $GetAppExclude = Get-AppxPackage -AllUsers | Select Name | Where Name -notin $ExcludeApp
 
                     ForEach ($App in $GetAppExclude.Name){
-                        $progressPreference = 'SilentlyContinue' #Work but output text won't display
+                        $ConsoleOutput.AppendText("Removing $App...`r`n")
+                        $ConsoleOutput.Select($ConsoleOutput.Text.Length, 0)
+                        $ConsoleOutput.ScrollToCaret()
+                        $progressPreference = 'SilentlyContinue'
                         Get-AppxPackage -AllUsers $App | Remove-AppPackage
                     }
 
-                    $OutputText.Text = "Removing bloatware for all users, please wait..."
+                    $ConsoleOutput.SelectionColor = $yellowBrush
+                    $ConsoleOutput.AppendText("Removing bloatware for all users, please wait...`r`n")
+                    $ConsoleOutput.SelectionColor = $ConsoleOutput.ForeColor
 
                     $DISMExcludeApp = "Microsoft.AVCEncoderVideoExtension","Microsoft.DesktopAppInstaller","Microsoft.DolbyAudioExtensions","Microsoft.HEIFImageExtension","Microsoft.HEVCVideoExtension","Microsoft.MPEG2VideoExtension","Microsoft.MicrosoftEdge.Stable","Microsoft.Paint","Microsoft.RawImageExtension","Microsoft.ScreenSketch","Microsoft.SecHealthUI","Microsoft.StorePurchaseApp","Microsoft.VCLibs.140.00","Microsoft.VP9VideoExtensions","Microsoft.WebMediaExtensions","Microsoft.WebpImageExtension","Microsoft.WindowsCalculator","Microsoft.WindowsNotepad","Microsoft.WindowsStore","Microsoft.WindowsTerminal"
 
                     $GetDISMAppExclude = Get-ProvisionedAppxPackage -Online | Select DisplayName,PackageName | Where DisplayName -notin $DISMExcludeApp
 
                     ForEach ($App in $GetDISMAppExclude.PackageName){
+                        $ConsoleOutput.AppendText("Removing $App using DISM...`r`n")
+                        $ConsoleOutput.Select($ConsoleOutput.Text.Length, 0)
+                        $ConsoleOutput.ScrollToCaret()
                         dism /Online /Remove-ProvisionedAppxPackage /PackageName:$App
                     }
 
-                    $OutputText.Text = "Bloatware removal completed"
-
+                    $ConsoleOutput.SelectionColor = $greenBrush
+                    $ConsoleOutput.AppendText("Bloatware removal completed`r`n")
+                    $ConsoleOutput.Select($ConsoleOutput.Text.Length, 0)
+                    $ConsoleOutput.ScrollToCaret()
 
                 }
                 Catch{
 
-                    $OutputText.Text = "Bloatware removal failed. Error detected"
+                    $ConsoleOutput.SelectionColor = $redBrush
+                    $ConsoleOutput.Select($ConsoleOutput.Text.Length, 0)
+                    $ConsoleOutput.ScrollToCaret()
+                    $ConsoleOutput.AppendText("Bloatware removal failed. An error has been detected : $($_.Exception.Message).`r`n")
+                    $ConsoleOutput.SelectionColor = $ConsoleOutput.ForeColor
 
                 }
-
             }
 
             ########################################
@@ -330,8 +402,12 @@ $RunButton.Add_Click({
             ########################################
 
             If($EdgeButton.Checked -eq $true){
-
-            $OutputText.Text = "Removing Edge, please wait..."
+            
+            $ConsoleOutput.SelectionColor = $yellowBrush
+            $ConsoleOutput.AppendText("Removing Edge, please wait...`r`n")
+            $ConsoleOutput.SelectionColor = $ConsoleOutput.ForeColor
+            $ConsoleOutput.Select($ConsoleOutput.Text.Length, 0)
+            $ConsoleOutput.ScrollToCaret()
                 
                 Try{
 
@@ -346,16 +422,25 @@ $RunButton.Add_Click({
                         reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Appx\AppxAllUserStore\EndOfLife\$($GetUsernameSID.SID.Value)\$($EdgeApp)" /f
                         reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Appx\AppxAllUserStore\EndOfLife\S-1-5-18\$($EdgeApp)" /f
                         reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Appx\AppxAllUserStore\Deprovisioned\$($EdgeApp)" /f
-                        $progressPreference = 'SilentlyContinue' #Work but output text won't display
+                        $progressPreference = 'SilentlyContinue'
                         Remove-AppxPackage -Package $EdgeApp -ErrorAction SilentlyContinue
                         Remove-AppxPackage -Package $EdgeApp -AllUsers -ErrorAction SilentlyContinue
                     }
 
-                    $OutputText.Text = "Edge removal completed"
+                    Start-Sleep 5
+
+                    $ConsoleOutput.SelectionColor = $greenBrush
+                    $ConsoleOutput.AppendText("Edge removal completed`r`n")
+                    $ConsoleOutput.Select($ConsoleOutput.Text.Length, 0)
+                    $ConsoleOutput.ScrollToCaret()
                 }
                 Catch{
 
-                    $OutputText.Text = "Edge removal failed. Error detected"
+                    $ConsoleOutput.SelectionColor = $redBrush
+                    $ConsoleOutput.AppendText("Edge removal failed. An error has been detected : $($_.Exception.Message).`r`n")
+                    $ConsoleOutput.SelectionColor = $ConsoleOutput.ForeColor
+                    $ConsoleOutput.Select($ConsoleOutput.Text.Length, 0)
+                    $ConsoleOutput.ScrollToCaret()
 
                 }
 
@@ -363,7 +448,11 @@ $RunButton.Add_Click({
 
             If($OneDriveButton.Checked -eq $true){
 
-            $OutputText.Text = "Removing OneDrive, please wait..."
+            $ConsoleOutput.SelectionColor = $yellowBrush
+            $ConsoleOutput.AppendText("Removing OneDrive, please wait...`r`n")
+            $ConsoleOutput.SelectionColor = $ConsoleOutput.ForeColor
+            $ConsoleOutput.Select($ConsoleOutput.Text.Length, 0)
+            $ConsoleOutput.ScrollToCaret()
                 
                 Try{
 
@@ -423,12 +512,20 @@ $RunButton.Add_Click({
                     Set-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name AutoRestartShell -Value 1
                     Start explorer.exe
 
-                    $OutputText.Text = "OneDrive removal completed"
+                    Start-Sleep 5
+
+                    $ConsoleOutput.SelectionColor = $greenBrush
+                    $ConsoleOutput.AppendText("OneDrive removal completed`r`n")
+                    $ConsoleOutput.Select($ConsoleOutput.Text.Length, 0)
+                    $ConsoleOutput.ScrollToCaret()
 
                 }
                 Catch{
 
-                    $OutputText.Text = "OneDrive removal failed. Error detected"
+                    $ConsoleOutput.SelectionColor = $redBrush
+                    $ConsoleOutput.AppendText("OneDrive removal failed. An error has been detected : $($_.Exception.Message).`r`n")
+                    $ConsoleOutput.Select($ConsoleOutput.Text.Length, 0)
+                    $ConsoleOutput.ScrollToCaret()
 
                 }
 
@@ -438,7 +535,11 @@ $RunButton.Add_Click({
             #   Edit IntegratedServicesRegionPolicySet.json file (Digital Market Act)   #
             #############################################################################
 
-            $OutputText.Text = "Editing IntegratedServicesRegionPolicySet.json file..."
+            $ConsoleOutput.SelectionColor = $yellowBrush
+            $ConsoleOutput.AppendText("Editing IntegratedServicesRegionPolicySet.json file, please wait...`r`n")
+            $ConsoleOutput.SelectionColor = $ConsoleOutput.ForeColor
+            $ConsoleOutput.Select($ConsoleOutput.Text.Length, 0)
+            $ConsoleOutput.ScrollToCaret()
 
             #Find local administrator
             $GetAdminSID = Get-LocalGroup -SID "S-1-5-32-544"
@@ -493,7 +594,11 @@ $RunButton.Add_Click({
             $DMAStartRecommendations[297] = $DMAStartRecommendations[297] -replace 'enabled','disabled'
             Set-Content -Path $env:windir\System32\IntegratedServicesRegionPolicySet.json -Value $DMAStartRecommendations
 
-            $OutputText.Text = "IntegratedServicesRegionPolicySet.json file has been edited"
+            $ConsoleOutput.SelectionColor = $greenBrush
+            $ConsoleOutput.AppendText("IntegratedServicesRegionPolicySet.json file has been edited successfully`r`n")
+            $ConsoleOutput.SelectionColor = $ConsoleOutput.ForeColor
+            $ConsoleOutput.Select($ConsoleOutput.Text.Length, 0)
+            $ConsoleOutput.ScrollToCaret()
 
             ############################
             #                          #
@@ -503,7 +608,11 @@ $RunButton.Add_Click({
 
             If($PrivacyButton.Checked -eq $true -or $PerformanceButton.Checked -eq $true -or $CustomizationButton.Checked -eq $true){
                 
-                $OutputText.Text = "Tweaking registry, please wait..."
+                $ConsoleOutput.SelectionColor = $yellowBrush
+                $ConsoleOutput.AppendText("Tweaking registry, please wait...`r`n")
+                $ConsoleOutput.SelectionColor = $ConsoleOutput.ForeColor
+                $ConsoleOutput.Select($ConsoleOutput.Text.Length, 0)
+                $ConsoleOutput.ScrollToCaret()
                 
                 #Loading registry keys (System components)
                 reg load "HKLM\zNTUSER" $env:HOMEDRIVE\Users\Default\ntuser.dat        #Apply all HKCU keys to all new created users
@@ -1029,7 +1138,11 @@ $RunButton.Add_Click({
                 #Unloading registry keys (System components)
                 reg unload "HKLM\zNTUSER"
 
-                $OutputText.Text = "Registry tweaking completed"
+                $ConsoleOutput.SelectionColor = $greenBrush
+                $ConsoleOutput.AppendText("Registry tweaking completed`r`n")
+                $ConsoleOutput.SelectionColor = $ConsoleOutput.ForeColor
+                $ConsoleOutput.Select($ConsoleOutput.Text.Length, 0)
+                $ConsoleOutput.ScrollToCaret()
 
             }
 
@@ -1067,7 +1180,11 @@ $RunButton.Add_Click({
 
             }
 
-            $OutputText.Text = "Program execution completed, you can exit"
+            $ConsoleOutput.SelectionColor = $greenBrush
+            $ConsoleOutput.AppendText("Program successfully executed. You can restart the computer for the changes to take effect`r`n")
+            $ConsoleOutput.SelectionColor = $ConsoleOutput.ForeColor
+            $ConsoleOutput.Select($ConsoleOutput.Text.Length, 0)
+            $ConsoleOutput.ScrollToCaret()
 
 
 })
