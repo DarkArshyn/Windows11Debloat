@@ -1,3 +1,36 @@
+##[Ps1 To Exe]
+##
+##Kd3HDZOFADWE8uO1
+##Nc3NCtDXTlaDjofG5iZk2X3vTmc+UuGUrriry4C47NbbsivdRo0HB110mUk=
+##Kd3HFJGZHWLWoLaVvnQnhQ==
+##LM/RF4eFHHGZ7/K1
+##K8rLFtDXTiW5
+##OsHQCZGeTiiZ4dI=
+##OcrLFtDXTiW5
+##LM/BD5WYTiiZ4tI=
+##McvWDJ+OTiiZ4tI=
+##OMvOC56PFnzN8u+Vs1Q=
+##M9jHFoeYB2Hc8u+Vs1Q=
+##PdrWFpmIG2HcofKIo2QX
+##OMfRFJyLFzWE8uK1
+##KsfMAp/KUzWI0g==
+##OsfOAYaPHGbQvbyVvnQmqxqgEwg=
+##LNzNAIWJGmPcoKHc7Do3uAu/DDllP6U=
+##LNzNAIWJGnvYv7eVvnQX
+##M9zLA5mED3nfu77Q7TV64AuzAgg=
+##NcDWAYKED3nfu77Q7TV64AuzAl8iYMGUrqXnldD82+/utyrYXdozfH0X
+##OMvRB4KDHmHQvbyVvnRT4EniTWk/LtyUrKTn84iy++X7qGXOQI4cCUd+mznwAQuuVvQGQvQHsZETVA4vK7IE7PLgFPCsV5ECl+9zCw==
+##P8HPFJGEFzWE8tI=
+##KNzDAJWHD2fS8u+Vgw==
+##P8HSHYKDCX3N8u+VxzVl7mr8UWAyYKU=
+##LNzLEpGeC3fMu77Ro2k3hQ==
+##L97HB5mLAnfMu77Ro2k3hQ==
+##P8HPCZWEGmaZ7/K1
+##L8/UAdDXTlaDjofG5iZk2X3vTmc+UuGeqr2zy5GAy+//r2vcUZ90
+##Kc/BRM3KXxU=
+##
+##
+##fd6a9f26a06ea3bc99616d4851b372ba
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
 
@@ -12,7 +45,7 @@ $objform.MaximizeBox = $False
 $objForm.FormBorderStyle = [System.Windows.Forms.FormBorderStyle]::FixedDialog
 
 $Version = New-Object System.Windows.Forms.Label
-$Version.Text = "Version 1.1"
+$Version.Text = "Version 1.1.1"
 $Version.AutoSize = $true
 $Version.Location = New-Object System.Drawing.Size(710,304)
 $objForm.Controls.Add($Version)
@@ -351,11 +384,12 @@ $RunButton.Add_Click({
     
                 Try{
 
-                    $ExcludeApp = "1527c705-839a-4832-9118-54d4Bd6a0c89","c5e2524a-ea46-4f67-841f-6a9465d9d515","E2A4F912-2574-4A75-9BB0-0D023378592B","F46D4000-FD22-4DB4-AC8E-4E1DDDE828FE","Microsoft.AAD.BrokerPlugin","Microsoft.AccountsControl","Microsoft.MicrosoftEdge.Stable","Microsoft.AsyncTextService","Microsoft.AVCEncoderVideoExtension","Microsoft.BioEnrollment","Microsoft.CredDialogHost","Microsoft.MicrosoftEdgeDevToolsClient","Microsoft.LanguageExperiencePack*","Microsoft.UI.Xaml.CBS","Microsoft.Win32WebViewHost","Microsoft.Windows.Apprep.ChxApp","Microsoft.Windows.AssignedAccessLockApp","Microsoft.Windows.CallingShellApp","Microsoft.Windows.CapturePicker","Microsoft.Windows.CloudExperienceHost","Microsoft.Windows.ContentDeliveryManager","Microsoft.DolbyAudioExtensions","Microsoft.Windows.NarratorQuickStart","Microsoft.Windows.OOBENetworkCaptivePortal","Microsoft.Windows.OOBENetworkConnectionFlow","Microsoft.Windows.PeopleExperienceHost","Microsoft.Windows.ParentalControls","Microsoft.Windows.PinningConfirmationDialog","Microsoft.Windows.PrintQueueActionCenter","Microsoft.Windows.SecureAssessmentBrowser","Microsoft.Windows.StartMenuExperienceHost","Microsoft.Windows.XGpuEjectDialog","Microsoft.WindowsAppRuntime.CBS","Microsoft.WindowsAppRuntime*","Microsoft.XboxGameCallableUI","MicrosoftWindows.Client.Core","MicrosoftWindows.Client.FileExp","MicrosoftWindows.UndockedDevKit","NcsiUwpApp","Windows.CBSPreview","windows.immersivecontrolpanel","Windows.PrintDialog","Microsoft.UI.Xaml.2.4","Microsoft.VCLibs.140.00","Microsoft.NET.Native.Runtime.2.2","Microsoft.NET.Native.Framework.2.2","Microsoft.DesktopAppInstaller","Microsoft.HEIFImageExtension","Microsoft.HEVCVideoExtension","Microsoft.MPEG2VideoExtension","Microsoft.RawImageExtension","Microsoft.ScreenSketch","Microsoft.StorePurchaseApp","Microsoft.VP9VideoExtensions","Microsoft.WebMediaExtensions","Microsoft.WebpImageExtension","Microsoft.WindowsCalculator","Microsoft.WindowsNotepad","Microsoft.WindowsTerminal","Microsoft.SecHealthUI","Microsoft.VCLibs.140.00.UWPDesktop","Microsoft.WindowsAppRuntime.1.5","Microsoft.UI.Xaml.2.8","Microsoft.VCLibs.140.00","Microsoft.NET.Native.Runtime.2.2","Microsoft.NET.Native.Framework.2.2","Microsoft.Paint","Microsoft.WindowsStore","Microsoft.UI.Xaml.2.7","MicrosoftWindows.Client.LKG","Microsoft.WindowsAppRuntime.CBS","MicrosoftWindows.Client.Core","Microsoft.ECApp","Microsoft.LockApp","Microsoft.Windows.ShellExperienceHost","MicrosoftWindows.Client.CBS"
+                    $ExcludeApp = "1527c705-839a-4832-9118-54d4Bd6a0c89","c5e2524a-ea46-4f67-841f-6a9465d9d515","E2A4F912-2574-4A75-9BB0-0D023378592B","F46D4000-FD22-4DB4-AC8E-4E1DDDE828FE","Microsoft.AAD.BrokerPlugin","Microsoft.AccountsControl","Microsoft.MicrosoftEdge.Stable","Microsoft.AsyncTextService","Microsoft.AV1VideoExtension","Microsoft.AVCEncoderVideoExtension","Microsoft.BioEnrollment","Microsoft.CredDialogHost","Microsoft.MicrosoftEdgeDevToolsClient","Microsoft.UI.Xaml.CBS","Microsoft.Win32WebViewHost","Microsoft.Windows.Apprep.ChxApp","Microsoft.Windows.AssignedAccessLockApp","Microsoft.Windows.CallingShellApp","Microsoft.Windows.CapturePicker","Microsoft.Windows.CloudExperienceHost","Microsoft.Windows.ContentDeliveryManager","Microsoft.DolbyAudioExtensions","Microsoft.Windows.NarratorQuickStart","Microsoft.Windows.OOBENetworkCaptivePortal","Microsoft.Windows.OOBENetworkConnectionFlow","Microsoft.Windows.PeopleExperienceHost","Microsoft.Windows.ParentalControls","Microsoft.Windows.PinningConfirmationDialog","Microsoft.Windows.PrintQueueActionCenter","Microsoft.Windows.SecureAssessmentBrowser","Microsoft.Windows.StartMenuExperienceHost","Microsoft.Windows.XGpuEjectDialog","Microsoft.WindowsAppRuntime.CBS","Microsoft.XboxGameCallableUI","MicrosoftWindows.Client.Core","MicrosoftWindows.Client.FileExp","MicrosoftWindows.UndockedDevKit","NcsiUwpApp","Windows.CBSPreview","windows.immersivecontrolpanel","Windows.PrintDialog","Microsoft.UI.Xaml.2.4","Microsoft.VCLibs.140.00","Microsoft.NET.Native.Runtime.2.2","Microsoft.NET.Native.Framework.2.2","Microsoft.DesktopAppInstaller","Microsoft.HEIFImageExtension","Microsoft.HEVCVideoExtension","Microsoft.MPEG2VideoExtension","Microsoft.RawImageExtension","Microsoft.ScreenSketch","Microsoft.StorePurchaseApp","Microsoft.VP9VideoExtensions","Microsoft.WebMediaExtensions","Microsoft.WebpImageExtension","Microsoft.WindowsCalculator","Microsoft.WindowsNotepad","Microsoft.WindowsTerminal","Microsoft.SecHealthUI","Microsoft.VCLibs.140.00.UWPDesktop","Microsoft.WindowsAppRuntime.1.5","Microsoft.UI.Xaml.2.8","Microsoft.VCLibs.140.00","Microsoft.NET.Native.Runtime.2.2","Microsoft.NET.Native.Framework.2.2","Microsoft.Paint","Microsoft.WindowsStore","Microsoft.UI.Xaml.2.7","MicrosoftWindows.Client.LKG","Microsoft.WindowsAppRuntime.CBS","MicrosoftWindows.Client.Core","Microsoft.ECApp","Microsoft.LockApp","Microsoft.Windows.ShellExperienceHost","MicrosoftWindows.Client.CBS","Microsoft.Windows.AugLoop.CBS","MicrosoftWindows.Client.AIX","MicrosoftWindows.Client.Core","MicrosoftWindows.Client.FileExp","MicrosoftWindows.Client.OOBE","MicrosoftWindows.Client.Photon"
 
                     $GetAppExclude = Get-AppxPackage -AllUsers | Select Name | Where Name -notin $ExcludeApp
+                    $GetAppExcludeV2 = $GetAppExclude.Name -notlike 'Microsoft.WindowsAppRuntime*' -notlike 'Microsoft.LanguageExperiencePack*' -notlike 'Microsoft.ApplicationCompatibilityEnhancements' -notlike 'Microsoft.Services.Store.Engagement'
 
-                    ForEach ($App in $GetAppExclude.Name){
+                    ForEach ($App in $GetAppExcludeV2){
                         $ConsoleOutput.AppendText("Removing $App...`r`n")
                         $ConsoleOutput.Select($ConsoleOutput.Text.Length, 0)
                         $ConsoleOutput.ScrollToCaret()
@@ -367,7 +401,7 @@ $RunButton.Add_Click({
                     $ConsoleOutput.AppendText("Removing bloatware for all users, please wait...`r`n")
                     $ConsoleOutput.SelectionColor = $ConsoleOutput.ForeColor
 
-                    $DISMExcludeApp = "Microsoft.AVCEncoderVideoExtension","Microsoft.DesktopAppInstaller","Microsoft.DolbyAudioExtensions","Microsoft.HEIFImageExtension","Microsoft.HEVCVideoExtension","Microsoft.MPEG2VideoExtension","Microsoft.MicrosoftEdge.Stable","Microsoft.Paint","Microsoft.RawImageExtension","Microsoft.ScreenSketch","Microsoft.SecHealthUI","Microsoft.StorePurchaseApp","Microsoft.VCLibs.140.00","Microsoft.VP9VideoExtensions","Microsoft.WebMediaExtensions","Microsoft.WebpImageExtension","Microsoft.WindowsCalculator","Microsoft.WindowsNotepad","Microsoft.WindowsStore","Microsoft.WindowsTerminal"
+                    $DISMExcludeApp = "Microsoft.ApplicationCompatibilityEnhancements","Microsoft.AV1VideoExtension","Microsoft.AVCEncoderVideoExtension","Microsoft.DesktopAppInstaller","Microsoft.DolbyAudioExtensions","Microsoft.HEIFImageExtension","Microsoft.HEVCVideoExtension","Microsoft.MPEG2VideoExtension","Microsoft.MicrosoftEdge.Stable","Microsoft.NET.Native.Framework.2.2","Microsoft.NET.Native.Runtime.2.2","Microsoft.Paint","Microsoft.RawImageExtension","Microsoft.ScreenSketch","Microsoft.SecHealthUI","Microsoft.Services.Store.Engagement","Microsoft.StorePurchaseApp","Microsoft.UI.Xaml.2.7","Microsoft.UI.Xaml.2.8","Microsoft.VCLibs.140.00","Microsoft.VCLibs.140.00.UWPDesktop","Microsoft.VP9VideoExtensions","Microsoft.WebMediaExtensions","Microsoft.WebpImageExtension","Microsoft.WindowsCalculator","Microsoft.WindowsNotepad","Microsoft.WindowsAppRuntime.1.3","Microsoft.WindowsAppRuntime.1.4","Microsoft.WindowsStore","Microsoft.WindowsTerminal"
 
                     $GetDISMAppExclude = Get-ProvisionedAppxPackage -Online | Select DisplayName,PackageName | Where DisplayName -notin $DISMExcludeApp
 
@@ -411,9 +445,18 @@ $RunButton.Add_Click({
                 
                 Try{
 
-                    $ChildItem = Get-ChildItem ${env:ProgramFiles(x86)}\Microsoft\Edge\Application | Select Name
-                    $VersionEdge = $ChildItem.Name | Select -First 1
-                    Start-process "${env:ProgramFiles(x86)}\Microsoft\Edge\Application\$($VersionEdge)\Installer\setup.exe" "-uninstall --force-uninstall --system-level --delete-profile"
+                    $ChildItem = Get-ChildItem ${env:ProgramFiles(x86)}\Microsoft\Edge\Application setup.exe -Recurse -Force
+                    $EdgeVersionDirectory = $ChildItem.DirectoryName
+                    $EdgeDirectory = $EdgeVersionDirectory|ForEach {$_ +  "\setup.exe"}
+
+                    ps msedge | Stop-Process -Force
+
+                    #If multiple version exists
+                    ForEach($EdgeVersion in $EdgeDirectory){
+                        Start-process $EdgeVersion "-uninstall --force-uninstall --system-level --delete-profile"
+                    }
+
+                    
                     Remove-Item -Force -Recurse ${env:ProgramFiles(x86)}\Microsoft\Edge
 
                     $GetAllEdgeApp = Get-AppxPackage -AllUsers | Where-Object { $_.PackageFullName -like '*microsoftedge*' } | Select-Object -ExpandProperty PackageFullName
@@ -426,6 +469,15 @@ $RunButton.Add_Click({
                         Remove-AppxPackage -Package $EdgeApp -ErrorAction SilentlyContinue
                         Remove-AppxPackage -Package $EdgeApp -AllUsers -ErrorAction SilentlyContinue
                     }
+
+                    If(Test-Path "$env:ProgramData\Microsoft\Windows\Start Menu\Programs\*edge*.lnk"){
+                        Remove-Item "$env:ProgramData\Microsoft\Windows\Start Menu\Programs\*edge*.lnk"
+                    }
+                    If(Test-Path "$env:PUBLIC\Desktop\*edge*.lnk"){
+                        Remove-Item "$env:PUBLIC\Desktop\*edge*.lnk"
+                    }
+
+                    Stop-Process -ProcessName explorer -Force
 
                     Start-Sleep 5
 
@@ -619,7 +671,12 @@ $RunButton.Add_Click({
             }
 
             If($PrivacyButton.Checked -eq $true){
-                
+
+                #Disable Windows Recall (AI Spyware)
+                reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsAI" /v "DisableAIDataAnalysis" /t REG_DWORD /d "1" /f
+                reg add "HKCU\SOFTWARE\Policies\Microsoft\Windows\WindowsAI" /v "DisableAIDataAnalysis" /t REG_DWORD /d "1" /f
+                reg add "HKLM\zNTUSER\SOFTWARE\Policies\Microsoft\Windows\WindowsAI" /v "DisableAIDataAnalysis" /t REG_DWORD /d "1" /f
+
                 #Disable Windows Copilot
                 reg add "HKCU\SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot" /v "TurnOffWindowsCopilot" /t REG_DWORD /d "1" /f
                 reg add "HKLM\zNTUSER\SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot" /v "TurnOffWindowsCopilot" /t REG_DWORD /d "1" /f
@@ -839,7 +896,7 @@ $RunButton.Add_Click({
                 reg add "HKLM\zNTUSER\SOFTWARE\Microsoft\Windows\CurrentVersion\BackgroundAccessApplications" /v "GlobalUserDisabled" /t REG_DWORD /d "1" /f
                 reg add "HKLM\zNTUSER\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" /v "BackgroundAppGlobalToggle" /t REG_DWORD /d "0" /f
 
-                #Disable SmartScreen (HCKU)
+                #Disable SmartScreen (HKCU)
                 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" /v "SmartScreenEnabled" /t REG_SZ /d "Off" /f
                 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\AppHost" /v "EnableWebContentEvaluation" /t REG_DWORD /d "0" /f
 
@@ -858,6 +915,9 @@ $RunButton.Add_Click({
 
                 #Disable Reserved Storage
                 reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\ReserveManager" /v "ShippedWithReserves" /t REG_DWORD /d "0" /f
+
+                #Disable automatic BitLocker encryption when update to 24H2
+                reg add "HKLM\SYSTEM\CurrentControlSet\Control\BitLocker" /v "PreventDeviceEncryption" /t REG_DWORD /d "1" /f
 
             }
 
