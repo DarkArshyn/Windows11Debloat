@@ -1,36 +1,3 @@
-##[Ps1 To Exe]
-##
-##Kd3HDZOFADWE8uO1
-##Nc3NCtDXTlaDjofG5iZk2X3vTmc+UuGUrriry4C47NbbsivdRo0HB110mUk=
-##Kd3HFJGZHWLWoLaVvnQnhQ==
-##LM/RF4eFHHGZ7/K1
-##K8rLFtDXTiW5
-##OsHQCZGeTiiZ4dI=
-##OcrLFtDXTiW5
-##LM/BD5WYTiiZ4tI=
-##McvWDJ+OTiiZ4tI=
-##OMvOC56PFnzN8u+Vs1Q=
-##M9jHFoeYB2Hc8u+Vs1Q=
-##PdrWFpmIG2HcofKIo2QX
-##OMfRFJyLFzWE8uK1
-##KsfMAp/KUzWI0g==
-##OsfOAYaPHGbQvbyVvnQmqxqgEwg=
-##LNzNAIWJGmPcoKHc7Do3uAu/DDllP6U=
-##LNzNAIWJGnvYv7eVvnQX
-##M9zLA5mED3nfu77Q7TV64AuzAgg=
-##NcDWAYKED3nfu77Q7TV64AuzAl8iYMGUrqXnldD82+/utyrYXdozfH0X
-##OMvRB4KDHmHQvbyVvnRT4EniTWk/LtyUrKTn84iy++X7qGXOQI4cCUd+mznwAQuuVvQGQvQHsZETVA4vK7IE7PLgFPCsV5ECl+9zCw==
-##P8HPFJGEFzWE8tI=
-##KNzDAJWHD2fS8u+Vgw==
-##P8HSHYKDCX3N8u+VxzVl7mr8UWAyYKU=
-##LNzLEpGeC3fMu77Ro2k3hQ==
-##L97HB5mLAnfMu77Ro2k3hQ==
-##P8HPCZWEGmaZ7/K1
-##L8/UAdDXTlaDjofG5iZk2X3vTmc+UuGeqr2zy5GAy+//r2vcUZ90
-##Kc/BRM3KXxU=
-##
-##
-##fd6a9f26a06ea3bc99616d4851b372ba
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
 
