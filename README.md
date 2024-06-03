@@ -22,6 +22,7 @@ Since the script is written in PowerShell, you need to modify the default script
 All bloatware are removed from Windows. Only those applications remain :
 
 - All System Apps
+- AV1VideoExtension
 - AVCEncoderVideoExtension
 - DesktopAppInstaller
 - DolbyAudioExtensions
